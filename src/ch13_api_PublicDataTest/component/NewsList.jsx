@@ -4,6 +4,7 @@ import NewsItem from "../model/NewsItem";
 import axios from "axios";
 import PublicItem from "../model/PublicItem";
 import PublicItem2 from "../model/PublicItem2";
+import PublicItem3 from "../model/PublicItem3";
 
 // 뉴스 아이템 요소를 출력을 감싸는 목록부분에 해당하고,
 // 미디어쿼리 넣어서, 약간 반응형으로, 특정 크기를 기준으로
@@ -129,6 +130,17 @@ const NewsList = ({ category }) => {
             // 상태변수, 타입 지정.
             setDatatype(2);
             break;
+          case "&category=gyeongnamLeisure":
+            // 경상남도 레저 API 주소, gyeongnamLeisure
+            const response5 = await axios.get(
+              `https://apis.data.go.kr/6480000/gyeongnamtourleisure/gyeongnamtourleisurelist?serviceKey=3TcDecXcikcH9bwW125ToBy%2BMICqkvRWbz%2BvVmyHgA1G4%2Fe0RNqMszPSU4aiz9HbxqEw6M8PJz3gNiYXhhXJjg%3D%3D&pageNo=1&numOfRows=10&resultType=json`
+            );
+            setArticles(
+              response5.data.gyeongnamtourleisurelist.body.items.item
+            );
+            // 상태변수, 타입 지정.
+            setDatatype(3);
+            break;
           default:
             alert("카테고리를 선택해주세요.");
         }
@@ -183,6 +195,14 @@ const NewsList = ({ category }) => {
           <div>
             {articles.map((article) => (
               <PublicItem2 key={article.MAIN_IMG_THUMB} article={article} />
+            ))}
+          </div>
+        );
+      case 3:
+        return (
+          <div>
+            {articles.map((article) => (
+              <PublicItem3 key={article.fileurl1} article={article} />
             ))}
           </div>
         );
