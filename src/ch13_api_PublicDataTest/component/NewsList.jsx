@@ -21,16 +21,6 @@ const NewsListCss = styled.div`
   }
 `;
 
-// 더미 데이터
-const sampleArticle = {
-  title: "제목",
-  description: "내용",
-  url: "https://www.naver.com",
-  urlToImage: "https://via.placeholder.com/160",
-};
-{
-  /* <NewList category={category} /> */
-}
 const NewsList = ({ category }) => {
   // useEffect 이용해서, 마운트시, 최초 1회 데이터 받아오기.
   // create, update, delete 없어서,

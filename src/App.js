@@ -1,11 +1,9 @@
-import logo from "./logo.svg";
 import "./App.css";
 // 자식 컴포넌트 요소
 import Join from "./component/Join";
 import Main from "./component/Main";
 import MyCount from "./component/MyCount";
 
-import { Button, Space, DatePicker, version } from "antd";
 // 페이지 이동을 위한 설정 1
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -29,9 +27,9 @@ import ImmerTest from "./ch12_immerTest/ImmerTest";
 import TestZone2 from "./ch12_immerTest/TestZone2";
 import ApiTest from "./ch13_api_PublicDataTest/ApiTest";
 import ApiTestKoreaNews from "./ch13_api_PublicDataTest/ApiTestKoreaNews";
-import MainNews from "./ch13_api_PublicDataTest/component/MainNews";
+
 import NewsPage from "./ch13_api_PublicDataTest/page/NewsPage";
-import TestColorBox from "./ch14_ContextAPITest/TestColorBox";
+
 import TestColorMain from "./ch14_ContextAPITest/TestColorMain";
 
 function App() {

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 // 카테고리 목록, 보이는 건 한글, 값은 영어로 할당.
 const categories = [
@@ -88,25 +88,6 @@ const CategoriesCss = styled(NavLink)`
     margin-left: 1rem;
   }
 `;
-{
-  /* <Categories category={category} onSelect={onSelect} /> */
-}
-//기존 방식
-// const Categories = ({ category, onSelect }) => {
-//   return (
-//     <CategoriesBlockCss>
-//       {categories.map((c) => (
-//         <CategoriesCss
-//           key={c.name}
-//           active={category === c.name}
-//           onClick={() => onSelect(c.name)}
-//         >
-//           {c.text}
-//         </CategoriesCss>
-//       ))}
-//     </CategoriesBlockCss>
-//   );
-// };
 
 // NavLink 방식. 변경.
 // const Categories = ({ category, onSelect }) => : 기존 방식이며, NavLink 방식이면 아래와 같이 사용가능

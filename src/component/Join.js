@@ -26,7 +26,7 @@ const Join = () => {
     "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
   );
   // 파일 세팅 , 선택된 파일, 변경하는 함수
-  const [File, setFile] = useState("");
+  const [setFile] = useState("");
   // input 태그에 접근하기 위한 ref 속성달기 -> 뷰에 접근하기위해서 사용.
   // 설정하고 싶은 HTML DOM 요소에 가서,
   // 사용법, 설정 ref = {fileInput}
