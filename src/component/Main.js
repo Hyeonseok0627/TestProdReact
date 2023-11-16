@@ -297,7 +297,7 @@ const Main = () => {
             title="newsPageTest/:category"
             type="primary"
             onClick={() => {
-              navigate("/newsPageTest/:category");
+              navigate("/newsPageTest/all");
             }}
           >
             newsPageTest/:category 확인
