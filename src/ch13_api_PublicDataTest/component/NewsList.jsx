@@ -106,7 +106,7 @@ const NewsList = ({ category }) => {
           case "&category=technology":
             // 뉴스 API 주소 technology 주제
             const response_technology = await axios.get(
-              `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=6a23f90a75ac497c85a7337140914082`
+              `https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=b7adb4f936494b3bac62f446ab7686cb`
             );
             setArticles(response_technology.data.articles);
             // 상태변수, 타입 지정.

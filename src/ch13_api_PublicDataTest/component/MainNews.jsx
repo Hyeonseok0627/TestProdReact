@@ -13,7 +13,7 @@ const MainNews = () => {
     <div>
       {/* 부모 컴포넌트에서(MainNews)
       자식 컴포넌트1(Categories)
-      자식 컴포넌트2(NewsList) -> NewsItem 컴포넌트
+      자식 컴포넌트2(NewList) -> NewsItem 자식 컴포넌트3
       , props 속성으로 전달, 1) 선택된 카테고리 값
       2) 카테고리를 선택하는 함수 전달. */}
       <Categories category={category} onSelect={onSelect} />
