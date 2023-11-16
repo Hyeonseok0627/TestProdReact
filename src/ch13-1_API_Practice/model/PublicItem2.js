@@ -1,11 +1,11 @@
 import React from "react";
-//부산 도보여행 요소로 구성.
+//부산 도보 여행 요소로 구성.
 //기존 css 재사용
 // 가지고 올 데이터 부분 변경.
 import styled from "styled-components";
 // css 작업 대상,
 // 1) 이미지 2) 콘텐츠 내용
-const NewsItemCss = styled.div`
+const PublicDataItemCss = styled.div`
   display: flex;
 
   //이미지, thumbnail
@@ -24,9 +24,9 @@ const NewsItemCss = styled.div`
   .contents {
     h2 {
       margin: 0;
-      /* a {
+      a {
         color: blue;
-      } */
+      }
     }
 
     p {
@@ -39,8 +39,8 @@ const NewsItemCss = styled.div`
     }
   }
 
-  // & : 현재 요소 , 각 뉴스 목록의 요소
-  // 각 뉴스 아이템 요소가 배치가 될때, 간격을 주겠다.
+  // & : 현재 요소 , 각 공공데이터 목록의 요소
+  // 각 공공데이터 아이템 요소가 배치가 될때, 간격을 주겠다.
   // & + & : 형제 연산자, 요소의 이웃, 같은 요소를 나열 시.
   //
   & + & {
@@ -48,13 +48,13 @@ const NewsItemCss = styled.div`
   }
 `;
 
-const PublicItem2 = (article) => {
-  // article : 각 기사의 내용을 담은 객체.
+const PublicItem2 = ({ pubDt }) => {
+  // pubDt : 각 기사의 내용을 담은 객체.
   // 비구조화 할당으로 각 각 할당.
-  // 선택할 요소: 1)MAIN_TITLE, 2) MAIN_IMG_THUMB , 3) TRFC_INFO , 4) ITEMCNTNTS
-  const { MAIN_TITLE, TRFC_INFO, MAIN_IMG_THUMB, ITEMCNTNTS } = article;
+  // 선택할 요소: 1)MAIN_TITLE 2)MAIN_IMG_THUMB 3)TRFC_INFO 4)ITEMCNTNTS
+  const { MAIN_TITLE, TRFC_INFO, MAIN_IMG_THUMB, ITEMCNTNTS } = pubDt;
   return (
-    <NewsItemCss>
+    <PublicDataItemCss>
       {/* 조건부 렌더링으로 출력하기.  */}
 
       {MAIN_IMG_THUMB && (
@@ -69,10 +69,9 @@ const PublicItem2 = (article) => {
       <div className="contents">
         <h2>{MAIN_TITLE}</h2>
         <p>교통정보: {TRFC_INFO}</p>
-        <p>설명: {ITEMCNTNTS}</p>
+        <p>설명 : {ITEMCNTNTS}</p>
       </div>
-    </NewsItemCss>
+    </PublicDataItemCss>
   );
 };
-
 export default PublicItem2;

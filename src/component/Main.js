@@ -312,6 +312,16 @@ const Main = () => {
           >
             contextAPITest 확인
           </Button>
+          <br />
+          <Button
+            title="publicDataPageTest/:category"
+            type="primary"
+            onClick={() => {
+              navigate("/publicDataPageTest/all");
+            }}
+          >
+            publicDataPageTest/:category 확인
+          </Button>
         </Container>
       </div>
     </Wrapper>

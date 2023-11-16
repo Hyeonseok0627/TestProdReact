@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Categories from "../component/Categories";
-import NewsList from "../component/PublicDataList";
+import PublicDataList from "./../component/PublicDataList";
 
 const PublicDataPage = () => {
   // 라우팅에서 경로 뒤에 /:category , 링크 뒤에 파라미터를 속성 설정
@@ -15,7 +15,7 @@ const PublicDataPage = () => {
       {/* 기존에 MainNews 에서 전달하는 방식과 조금 다름. 
       여기서는 NavLink 이용해서 스타일 전달하기.  */}
       <Categories />
-      <NewsList category={category} />
+      <PublicDataList category={category} />
     </div>
   );
 };

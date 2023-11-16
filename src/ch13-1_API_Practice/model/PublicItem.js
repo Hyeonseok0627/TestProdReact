@@ -5,7 +5,7 @@ import React from "react";
 import styled from "styled-components";
 // css 작업 대상,
 // 1) 이미지 2) 콘텐츠 내용
-const NewsItemCss = styled.div`
+const PublicDataItemCss = styled.div`
   display: flex;
 
   //이미지, thumbnail
@@ -39,8 +39,8 @@ const NewsItemCss = styled.div`
     }
   }
 
-  // & : 현재 요소 , 각 뉴스 목록의 요소
-  // 각 뉴스 아이템 요소가 배치가 될때, 간격을 주겠다.
+  // & : 현재 요소 , 각 공공데이터 목록의 요소
+  // 각 공공데이터 아이템 요소가 배치가 될때, 간격을 주겠다.
   // & + & : 형제 연산자, 요소의 이웃, 같은 요소를 나열 시.
   //
   & + & {
@@ -48,13 +48,13 @@ const NewsItemCss = styled.div`
   }
 `;
 
-const PublicItem = ({ article }) => {
-  // article : 각 기사의 내용을 담은 객체.
+const PublicItem = ({ pubDt }) => {
+  // pubDt : 각 기사의 내용을 담은 객체.
   // 비구조화 할당으로 각 각 할당.
   // 선택할 요소: 1)MAIN_TITLE, 2) CNTCT_TEL , 3) MAIN_IMG_THUMB , 4) ADDR1
-  const { MAIN_TITLE, CNTCT_TEL, MAIN_IMG_THUMB, ADDR1 } = article;
+  const { MAIN_TITLE, CNTCT_TEL, MAIN_IMG_THUMB, ADDR1 } = pubDt;
   return (
-    <NewsItemCss>
+    <PublicDataItemCss>
       {/* 조건부 렌더링으로 출력하기.  */}
 
       {MAIN_IMG_THUMB && (
@@ -71,7 +71,7 @@ const PublicItem = ({ article }) => {
         <p>주소: {ADDR1}</p>
         <p>연락처: {CNTCT_TEL}</p>
       </div>
-    </NewsItemCss>
+    </PublicDataItemCss>
   );
 };
 

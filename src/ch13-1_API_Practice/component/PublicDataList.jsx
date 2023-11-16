@@ -5,7 +5,7 @@ import PublicItem from "../model/PublicItem";
 import PublicItem2 from "../model/PublicItem2";
 import PublicItem3 from "../model/PublicItem3";
 
-// 뉴스 아이템 요소를 출력을 감싸는 목록부분에 해당하고,
+// 공공데이터 아이템 요소를 출력을 감싸는 목록부분에 해당하고,
 // 미디어쿼리 넣어서, 약간 반응형으로, 특정 크기를 기준으로
 // 웹 브라우저의 창의 크기가 변경시, 화면 사이즈 적용되기.
 const PublicDataListCss = styled.div`
@@ -26,12 +26,12 @@ const PublicDataList = ({ category }) => {
   // create, update, delete 없어서,
   // 단순, 데이터 만 가져오기 때문에,
   // REST API 서버에서 데이터를 다 받으면, articles 에 넣기.
-  const [articles, setArticles] = useState(null);
+  const [pubDts, setPubDts] = useState(null);
   // 만약, 데이터를 받고 있는 중이면, loading 값을 true,
   // 데이터를 다 받으면, loading 값을 false 로 변경하기.
   const [loading, setLoading] = useState(false);
 
-  //상태변수, 뉴스(0), 공공데이터(1,2)에 따라서
+  //상태변수, 공공데이터(0,1,2)에 따라서
   const [datatype, setDatatype] = useState(0);
 
   useEffect(() => {
@@ -40,14 +40,15 @@ const PublicDataList = ({ category }) => {
 
       try {
         // 카테고리별로, url 주소 변경하기.
-        const query = category === `&category=${category}`;
+        const query = category === "all" ? "" : `&category=${category}`;
 
         switch (query) {
+          // 부산테마먹거리 API 주소, busanFood
           case "&category=busanFood":
             const response = await axios.get(
               `https://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=ALRX9GpugtvHxcIO%2FiPg1vXIQKi0E6Kk1ns4imt8BLTgdvSlH%2FAKv%2BA1GcGUQgzuzqM3Uv1ZGgpG5erOTDcYRQ%3D%3D&numOfRows=100&pageNo=1&resultType=json`
             );
-            setArticles(response.data.getFoodKr.item);
+            setPubDts(response.data.getFoodKr.item);
             // 상태변수, 타입 지정.
             setDatatype(0);
             break;
@@ -56,15 +57,18 @@ const PublicDataList = ({ category }) => {
             const response1 = await axios.get(
               `https://apis.data.go.kr/6260000/WalkingService/getWalkingKr?serviceKey=ALRX9GpugtvHxcIO%2FiPg1vXIQKi0E6Kk1ns4imt8BLTgdvSlH%2FAKv%2BA1GcGUQgzuzqM3Uv1ZGgpG5erOTDcYRQ%3D%3D&pageNo=1&numOfRows=100&resultType=json`
             );
-            setArticles(response1.data.getWalkingKr.item);
+            setPubDts(response1.data.getWalkingKr.item);
             // 상태변수, 타입 지정.
             setDatatype(1);
             break;
-          case "&category=gyeongnamLeisure":
+          case "&category=busanFestival":
+            // 부산축제 API 주소, busanFestival
             const response2 = await axios.get(
-              `https://apis.data.go.kr/6480000/gyeongnamtourleisure/gyeongnamtourleisurelist?serviceKey=3TcDecXcikcH9bwW125ToBy%2BMICqkvRWbz%2BvVmyHgA1G4%2Fe0RNqMszPSU4aiz9HbxqEw6M8PJz3gNiYXhhXJjg%3D%3D&pageNo=1&numOfRows=10&resultType=json`
+              `https://apis.data.go.kr/6260000/FestivalService/getFestivalKr?serviceKey=3TcDecXcikcH9bwW125ToBy%2BMICqkvRWbz%2BvVmyHgA1G4%2Fe0RNqMszPSU4aiz9HbxqEw6M8PJz3gNiYXhhXJjg%3D%3D&pageNo=1&numOfRows=10&resultType=json`
             );
-            setArticles(response2.data.gyeongnamtourleisurelist.items.item);
+            setPubDts(
+              response2.data.getFestivalKr.item
+            );
             // 상태변수, 타입 지정.
             setDatatype(2);
             break;
@@ -72,14 +76,11 @@ const PublicDataList = ({ category }) => {
             alert("카테고리를 선택해주세요.");
         }
 
-        //console.log(response.data)
-        // 해당 주소를 입력해서, 모델링 조사할 때, 이미 구조를 다 봤음.
-        // setArticles(response.data.articles);
       } catch (e) {
         console.log(e);
       }
       setLoading(false);
-    }; // resultData async 함수 블록 끝부분,
+    }; 
     // 비동기 함수 만들어서, 사용하기.
     resultData();
     // category 의 값에 따라서 새로운 함수를 생성함.
@@ -91,7 +92,7 @@ const PublicDataList = ({ category }) => {
   }
 
   // 데이터를 못받아 왔을 경우, 화면에 아무것도 안그리기.
-  if (!articles) {
+  if (!pubDts) {
     return null;
   }
 
@@ -99,29 +100,29 @@ const PublicDataList = ({ category }) => {
 
   // 각 화면을 그리기 위한, 하나의 함수를 만들었음.
   // datatype 에따라서, 렌더링을 다르게 했음.
-  const choosePage = ({ articles }) => {
+  const choosePage = ({ pubDts }) => {
     switch (datatype) {
       case 0:
         return (
           <div>
-            {articles.map((article) => (
-              <PublicItem key={article.MAIN_IMG_THUMB} article={article} />
+            {pubDts.map((pubDt) => (
+              <PublicItem key={pubDt.MAIN_IMG_THUMB} pubDt={pubDt} />
             ))}
           </div>
         );
       case 1:
         return (
           <div>
-            {articles.map((article) => (
-              <PublicItem2 key={article.MAIN_IMG_THUMB} article={article} />
+            {pubDts.map((pubDt) => (
+              <PublicItem2 key={pubDt.MAIN_IMG_THUMB} pubDt={pubDt} />
             ))}
           </div>
         );
       case 2:
         return (
           <div>
-            {articles.map((article) => (
-              <PublicItem3 key={article.fileurl1} article={article} />
+            {pubDts.map((pubDt) => (
+              <PublicItem3 key={pubDt.MAIN_IMG_THUMB} pubDt={pubDt} />
             ))}
           </div>
         );
@@ -132,18 +133,8 @@ const PublicDataList = ({ category }) => {
 
   return (
     <PublicDataListCss>
-      {choosePage({ articles })}
-      {/* {articles.map((article) => (
-        // 부모 컴포넌트 : NewList -> 자식 컴포넌트 NewsItem에게 props 로 속성을 전달.
-        // article={article} , 하나의 기사의 내용을 통째로 전달.
+      {choosePage({ pubDts })}
 
-        <NewsItem key={article.url} article={article} />
-      ))} */}
-      {/* <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} /> */}
     </PublicDataListCss>
   );
 };

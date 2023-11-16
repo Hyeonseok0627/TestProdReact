@@ -3,7 +3,6 @@ import "./App.css";
 import Join from "./component/Join";
 import Main from "./component/Main";
 import MyCount from "./component/MyCount";
-
 // 페이지 이동을 위한 설정 1
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -27,10 +26,9 @@ import ImmerTest from "./ch12_immerTest/ImmerTest";
 import TestZone2 from "./ch12_immerTest/TestZone2";
 import ApiTest from "./ch13_api_PublicDataTest/ApiTest";
 import ApiTestKoreaNews from "./ch13_api_PublicDataTest/ApiTestKoreaNews";
-
 import NewsPage from "./ch13_api_PublicDataTest/page/NewsPage";
-
 import TestColorMain from "./ch14_ContextAPITest/TestColorMain";
+import PublicDataPage from "./ch13-1_API_Practice/page/PublicDataPage";
 
 function App() {
   return (
@@ -69,6 +67,10 @@ function App() {
         <Route path="newsPageTest/:category" element={<NewsPage />} />
         {/* <Route path="contextAPITest" element={<TestColorBox />} /> */}
         <Route path="contextAPITest" element={<TestColorMain />} />
+        <Route
+          path="publicDataPageTest/:category"
+          element={<PublicDataPage />}
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -6,7 +6,7 @@ import styled from "styled-components";
 const categories = [
   { name: "busanFood", text: "부산테마먹거리" },
   { name: "busanWalking", text: "부산도보여행" },
-  { name: "gyeongnamLeisure", text: "경상남도 레저" },
+  { name: "busanFestival", text: "부산축제" },
 ];
 // css
 const CategoriesBlockCss = styled.div`
@@ -21,36 +21,6 @@ const CategoriesBlockCss = styled.div`
     overflow-x: auto;
   }
 `;
-
-// 기존방식
-// const CategoriesCss = styled.div`
-//   font-size: 1.5rem;
-//   cursor: pointer;
-//   white-space: pre;
-//   text-decoration: none;
-//   color: inherit;
-//   padding-bottom: 0.5rem;
-
-//   &:hover {
-//     color: red;
-//   }
-
-//   // active 클래스 속성 추가.
-//   ${(props) =>
-//     props.active &&
-//     css`
-//       font-weight: 600;
-//       border-bottom: 2px solid violet;
-//       color: aqua;
-//       &:hover {
-//         color: green;
-//       }
-//     `}
-
-//   & + & {
-//     margin-left: 1rem;
-//   }
-// `;
 
 // NavLink 방식. 변경.
 // 기존의 styled.태그명 `속성` 이것을 아래처럼 바꾼 것
@@ -83,25 +53,8 @@ const CategoriesCss = styled(NavLink)`
   }
 `;
 
-//기존 방식
-// const Categories = ({ category, onSelect }) => {
-//   return (
-//     <CategoriesBlockCss>
-//       {categories.map((c) => (
-//         <CategoriesCss
-//           key={c.name}
-//           active={category === c.name}
-//           onClick={() => onSelect(c.name)}
-//         >
-//           {c.text}
-//         </CategoriesCss>
-//       ))}
-//     </CategoriesBlockCss>
-//   );
-// };
-
 // NavLink 방식. 변경.
-// const Categories = ({ category, onSelect }) => : 기존 방식이며, NavLink 방식이면 아래와 같이 사용가능
+
 const Categories = () => {
   return (
     <CategoriesBlockCss>
@@ -111,7 +64,9 @@ const Categories = () => {
           // NavLink 변경 부분
           className={({ isActive }) => (isActive ? "active" : undefined)}
           to={
-            c.name === "all" ? "/newsPageTest/all" : `/newsPageTest/${c.name}`
+            c.name === "all"
+              ? "/publicDataPageTest/all"
+              : `/publicDataPageTest/${c.name}`
           }
         >
           {c.text}
