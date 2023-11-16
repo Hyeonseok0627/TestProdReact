@@ -11,7 +11,7 @@ import TodoInsert from "./TodoInsert";
 
 import TodoList from "./TodoList";
 
-const Main_css = styled.div`
+const MainCss = styled.div`
   margin: 0;
   padding: 0;
   //회색, 배경색은 나중에 본인이 좋아하는 색으로 변경.
@@ -100,7 +100,7 @@ const TodoMain = () => {
   );
 
   return (
-    <Main_css>
+    <MainCss>
       <TodoBase>
         {/* 위에서 만든 useCallback 함수를 자식 컴포넌트에게 전달하기. */}
         <TodoInsert onInsert={onInsert} />
@@ -109,7 +109,7 @@ const TodoMain = () => {
         {/* 순서2, 적용하기. 체크하는 함수를 props를 이용해서, 전달 */}
         <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
       </TodoBase>
-    </Main_css>
+    </MainCss>
   );
 };
 
