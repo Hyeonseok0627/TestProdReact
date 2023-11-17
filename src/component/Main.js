@@ -317,7 +317,10 @@ const Main = () => {
             title="publicDataPageTest/:category"
             type="primary"
             onClick={() => {
-              navigate("/publicDataPageTest/all");
+              // navigate("/publicDataPageTest/all");
+              // all로 하면 처음버튼 누를때부터 해당 알림이 계속 뜨는 것이라
+              // 첫 카테고리 누를 시 알림이 뜨도록 변경하여 해결
+              navigate("/publicDataPageTest/busanFood");
             }}
           >
             publicDataPageTest/:category 확인
