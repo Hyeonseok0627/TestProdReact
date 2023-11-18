@@ -5,9 +5,6 @@ import PublicItem from "../model/PublicItem";
 import PublicItem2 from "../model/PublicItem2";
 import PublicItem3 from "../model/PublicItem3";
 
-// 공공데이터 아이템 요소를 출력을 감싸는 목록부분에 해당하고,
-// 미디어쿼리 넣어서, 약간 반응형으로, 특정 크기를 기준으로
-// 웹 브라우저의 창의 크기가 변경시, 화면 사이즈 적용되기.
 const PublicDataListCss = styled.div`
   box-sizing: border-box;
   padding-bottom: 3rem;
@@ -20,20 +17,11 @@ const PublicDataListCss = styled.div`
     padding-right: 1rem;
   }
 `;
-
 const PublicDataList = ({ category }) => {
-  // useEffect 이용해서, 마운트시, 최초 1회 데이터 받아오기.
-  // create, update, delete 없어서,
-  // 단순, 데이터 만 가져오기 때문에,
-  // REST API 서버에서 데이터를 다 받으면, articles 에 넣기.
   const [pubDts, setPubDts] = useState(null);
-  // 만약, 데이터를 받고 있는 중이면, loading 값을 true,
-  // 데이터를 다 받으면, loading 값을 false 로 변경하기.
   const [loading, setLoading] = useState(false);
-
   //상태변수, 공공데이터(0,1,2)에 따라서
   const [datatype, setDatatype] = useState(0);
-
   useEffect(() => {
     const resultData = async () => {
       setLoading(true);
@@ -75,7 +63,6 @@ const PublicDataList = ({ category }) => {
           default:
             alert("카테고리를 선택해주세요.");
         }
-
       } catch (e) {
         console.log(e);
       }
@@ -84,22 +71,15 @@ const PublicDataList = ({ category }) => {
     // 비동기 함수 만들어서, 사용하기.
     resultData();
     // category 의 값에 따라서 새로운 함수를 생성함.
-  }, [category]); //의존성 배열 부분의 모양은 빈배열, 최초 1회 마운트시 한번만 호출.
-
+  }, [category]); 
   // 주의사항, 데이터 널 체크하기.
   if (loading) {
     return <PublicDataListCss>데이터 받는중(대기중 ....)</PublicDataListCss>;
   }
-
   // 데이터를 못받아 왔을 경우, 화면에 아무것도 안그리기.
   if (!pubDts) {
     return null;
   }
-
-  // 로딩도 끝나고, 받아온 데이터가 존재 한다면, 그때 그리기.
-
-  // 각 화면을 그리기 위한, 하나의 함수를 만들었음.
-  // datatype 에따라서, 렌더링을 다르게 했음.
   const choosePage = ({ pubDts }) => {
     switch (datatype) {
       case 0:
@@ -130,7 +110,6 @@ const PublicDataList = ({ category }) => {
         return;
     }
   };
-
   return (
     <PublicDataListCss>
       {choosePage({ pubDts })}
